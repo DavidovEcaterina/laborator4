@@ -1,0 +1,20 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main   # Rulăm workflow-ul doar când facem push pe ramura main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest   # Se folosește o mașină virtuală Ubuntu
+
+    steps:
+      - name: Clonează repository
+        uses: actions/checkout@v4   # Clonează codul din repo
+
+      - name: Publică pe GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Token de autentificare automată
+          publish_dir: ./    # Ce folder să publice (rădăcina repo-ului)
